@@ -1,0 +1,15 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "lib",
+    "lib": ["es6"],
+    "target": "es6",
+    "module": "commonjs",
+    "pretty": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "sourceMap": true,
+    "declarationMap": true,
+  }
+}

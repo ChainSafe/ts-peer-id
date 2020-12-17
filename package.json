@@ -1,0 +1,39 @@
+{
+  "name": "ts-peer-id",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": "git@github.com:ChainSafe/ts-peer-id.git",
+  "author": "ChainSafe <info@chainsafe.io>",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test": "mocha --verbose --colors --coverage -r ts-node/register test/*.test.ts",
+    "lint": "eslint --ext .ts src/"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "chai": "^4.2.0",
+    "cids": "^1.1.4",
+    "eslint": "^7.15.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "fast-sha256": "^1.3.0",
+    "libp2p-crypto": "^0.18.0",
+    "multibase": "^3.1.0",
+    "multicodec": "^2.1.0",
+    "multihashes": "^3.1.0",
+    "uint8arrays": "^1.1.0"
+  }
+}
