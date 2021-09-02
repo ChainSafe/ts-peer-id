@@ -1,9 +1,9 @@
 import sha256 from 'fast-sha256'
 import type { PublicKey } from 'libp2p-crypto'
-import multibase = require('multibase')
-import multicodec = require('multicodec')
-import multihash = require('multihashes')
-import uint8ArrayConcat = require('uint8arrays/concat')
+import { encoding as multibaseEncoding } from 'multibase'
+import { getCodeVarint as multicodecGetCodeVarint } from 'multicodec'
+import * as multihash from 'multihashes'
+import { concat as uint8ArrayConcat } from 'uint8arrays'
 
 /**
  * A `PeerId` is derived by hashing an encoded public key with multihash
@@ -37,8 +37,8 @@ export function validatePeerId(peerId: PeerId): void {
 
 // precompute cid/multicodec prefix
 // <multicodec-cidv1><multicodec-content-type>
-const cidPrefix = uint8ArrayConcat([[1], multicodec.getCodeVarint('libp2p-key')])
-const base32 = multibase.encoding('base32')
+const cidPrefix = uint8ArrayConcat([[1], multicodecGetCodeVarint('libp2p-key')])
+const base32 = multibaseEncoding('base32')
 /**
  * Convert a peer-id to a multibase-encoded CID
  */

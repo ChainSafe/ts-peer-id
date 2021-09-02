@@ -1,8 +1,8 @@
-import { expect } from "chai";
-import mh = require('multihashes')
-import crypto = require('libp2p-crypto')
-import CID = require('cids')
-import uint8ArrayFromString = require('uint8arrays/from-string')
+import { expect } from 'chai'
+import * as mh  from 'multihashes'
+import { keys } from 'libp2p-crypto'
+import * as CID from 'cids'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 import * as PeerId from '../src'
 
@@ -18,14 +18,14 @@ const goPrivKey = uint8ArrayFromString(goId.privKey, 'base64pad')
 
 describe("peer-id", () => {
   it('create from a PublicKey', async () => {
-    const privkey = await crypto.keys.unmarshalPrivateKey(testPrivKey)
+    const privkey = await keys.unmarshalPrivateKey(testPrivKey)
     const id = PeerId.createPeerId(privkey.public)
     expect(testIdBytes).to.deep.equal(id)
     expect(testIdB58String).to.equal(PeerId.toStringLegacy(id))
   })
 
   it('interoperate with go', async () => {
-    const privkey = await crypto.keys.unmarshalPrivateKey(goPrivKey)
+    const privkey = await keys.unmarshalPrivateKey(goPrivKey)
     const id = PeerId.createPeerId(privkey.public)
     expect(goPeerIdString).to.equal(PeerId.toStringLegacy(id))
   })
