@@ -1,20 +1,21 @@
 import { expect } from 'chai'
-import * as mh  from 'multihashes'
-import { keys } from 'libp2p-crypto'
-import * as CID from 'cids'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as mh from 'multihashes'
+import * as crypto from '@libp2p/crypto'
+const { keys } = crypto
+import CID from 'cids'
+import {fromString} from 'uint8arrays/from-string'
 
-import * as PeerId from '../src'
+import * as PeerId from '../src/index.js'
 
-import * as testId from './fixtures/sample-id'
-import * as goId from './fixtures/go-private-key'
+import * as testId from './fixtures/sample-id.js'
+import * as goId from './fixtures/go-private-key.js'
 
 const testIdBytes = mh.fromHexString(testId.id)
 const testIdB58String = mh.toB58String(testIdBytes)
-const testPrivKey = uint8ArrayFromString(testId.privKey, 'base64pad')
+const testPrivKey = fromString(testId.privKey, 'base64pad')
 
 const goPeerIdString = goId.id
-const goPrivKey = uint8ArrayFromString(goId.privKey, 'base64pad')
+const goPrivKey = fromString(goId.privKey, 'base64pad')
 
 describe("peer-id", () => {
   it('create from a PublicKey', async () => {
